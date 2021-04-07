@@ -53,7 +53,9 @@ public class JwtTokenProvider implements InitializingBean {
     // role?
     // Authentication 객체의 권한 정보를 이용해서 Token을 생성하는 메소드
     // how?
-    // 1. authentication 파라미터를 받아서, authorities(권한들)에 할당
+    // 1. authentication 파라미터를 받아서, authorities(권한들)에 할당 (getAuthorities() = 사용자가 가진 모든 role 정보 get)
+    //      ex) admin 계정으로 접속 시, getAuthorities하면 ROLE_USER, ROLE_ADMIN을 얻을 수 있고,
+    //          stream()
     // 2. Date validity에 application.properties에서 생성한 Token 만료 시간을 설정
     // 3. return Jwts.builder()으로 생성한 JWT Token
     public String createToken(Authentication authentication) {
