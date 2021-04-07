@@ -32,7 +32,7 @@ public class JwtTokenProvider implements InitializingBean {
 
     private Key key;
 
-
+    //JWT의 Payload에 해당하는 부분
     public JwtTokenProvider(
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.token-validity-in-seconds}") long tokenValidityInSeconds) {

@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "flower")
+@Table(name = "product")
 @Getter
 @Setter
 @NoArgsConstructor
