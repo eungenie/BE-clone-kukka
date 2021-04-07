@@ -1,7 +1,14 @@
 package com.clone.kukka.entity;
 
+import com.clone.kukka.dto.CommentRequestDto;
+import com.clone.kukka.dto.UserDto;
+import com.clone.kukka.jwt.JwtTokenProvider;
+import com.clone.kukka.service.ProductService;
+import com.clone.kukka.service.UserService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
@@ -9,16 +16,32 @@ import javax.persistence.*;
 @NoArgsConstructor // 기본 생성자를 만들어줍니다.
 @Entity // DB 테이블 역할을 합니다.
 //@Table 이게 꼭 있어야하는지 찾아보
-public class Comment extends Timestamped{
+public class Comment extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //Product의 id와 연결 필요
-    @Column(name="product_id", nullable = false)
-    private String productId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCT_ID")
+    private Product product;
+
+    @Column(name = "content", nullable = false)
     private String content;
+
+    public Comment(CommentRequestDto requestDto, ProductService productService, UserService userService) {
+        this.user = userService.findByUserId(requestDto.getUserId());
+        this.product = productService.findById(requestDto.getProductId());
+        this.content = requestDto.getContent();
+    }
+
+    public Comment(String user, Long product, String content, ProductService productService, UserService userService) {
+        this.user = userService.findByUserId(user);
+        this.product = productService.findById(product);
+        this.content = content;
+    }
 }

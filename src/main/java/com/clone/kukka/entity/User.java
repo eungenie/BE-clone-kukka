@@ -1,5 +1,6 @@
 package com.clone.kukka.entity;
 
+import com.clone.kukka.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User{
 
     @JsonIgnore
     @Id

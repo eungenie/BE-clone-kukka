@@ -2,6 +2,7 @@ package com.clone.kukka.controller;
 
 import com.clone.kukka.entity.Product;
 import com.clone.kukka.repository.ProductRepository;
+import com.clone.kukka.service.CommentService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,8 @@ public class ProductController {
 
     private final ProductRepository productRepository;
 
-
     @GetMapping("/api/products")
-    public List<Product> getproducts() {
-
+    public List<Product> getProducts() {
         return productRepository.findAll();
     }
 }
