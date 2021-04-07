@@ -27,7 +27,7 @@ public class JwtFiler extends GenericFilterBean {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    // how?
+    // how? Header에서 JWT를 받아옴
     // 1. resolveToken 이용, httpServletRequest에서 token을 받아서 jwt에 할당
     // 2. vaildateToken으로 jwt(Token)의 유효성 검사 ㄱㄱ
     // 3. true: jwt의 authentication을 받아와서, SecurityContext에 set

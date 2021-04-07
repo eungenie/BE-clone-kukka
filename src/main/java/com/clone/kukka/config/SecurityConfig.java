@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 추가적�
                 );
     }
 
+    // 아래 것들이 전부 접근 Filter
     @Override // extends한 WebSecurityConfigurerAdapter의 configure을 override 한다.
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -76,5 +77,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 추가적�
                 .and()
                 .apply(new JwtSecurityConfig(jwtTokenProvider)); // JwtSecurityConfig 클래스 적용
                                                                  // : JwtFilter를 addFilterBefore 이용해서 Security logic에 등록했던 클래스
+                                                                 // 접근 권한 확인이 필요한 부분에서 우리가 만든 jwtTokenProvider(security logic, doFilter 등) 실행
     }
 }
