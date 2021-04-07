@@ -1,14 +1,10 @@
 package com.clone.kukka.entity;
 
 import com.clone.kukka.dto.CommentRequestDto;
-import com.clone.kukka.dto.UserDto;
-import com.clone.kukka.jwt.JwtTokenProvider;
+import com.clone.kukka.repository.ProductRepository;
 import com.clone.kukka.service.ProductService;
-import com.clone.kukka.service.UserService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
@@ -22,26 +18,19 @@ public class Comment extends Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @Column(name="USERNAME", nullable = false)
+    private String username;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "PRODUCT_ID")
+    @JoinColumn(name = "PRODUCT_ID", nullable = false)
     private Product product;
 
     @Column(name = "content", nullable = false)
     private String content;
 
-    public Comment(CommentRequestDto requestDto, ProductService productService, UserService userService) {
-        this.user = userService.findByUserId(requestDto.getUserId());
+    public Comment(CommentRequestDto requestDto, ProductService productService) {
+        this.username = requestDto.getUsername();
         this.product = productService.findById(requestDto.getProductId());
         this.content = requestDto.getContent();
-    }
-
-    public Comment(String user, Long product, String content, ProductService productService, UserService userService) {
-        this.user = userService.findByUserId(user);
-        this.product = productService.findById(product);
-        this.content = content;
     }
 }

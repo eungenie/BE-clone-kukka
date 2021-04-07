@@ -52,8 +52,8 @@ public class UserService {
     }
 
     // Comment
-    public User findByUserId(String id) {
-        return userRepository.findByUserId(id).orElseThrow(
-                () -> new RuntimeException("USER_ID가 존재하지 않습니다."));
-    }
+//    public User findByUserId(String id) {
+//        return userRepository.findByUserId(id).orElseThrow(
+//                () -> new RuntimeException("USER_ID가 존재하지 않습니다."));
+//    }
 }
