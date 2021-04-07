@@ -122,4 +122,11 @@ public class JwtTokenProvider implements InitializingBean {
         }
         return false;
     }
+
+    // Comment create에 쓰일 username을 token에서 파싱
+    public String getUserPk(String token) {
+        String UserPk = Jwts.parserBuilder().setSigningKey(key)
+                .build().parseClaimsJws(token).getBody().getSubject();
+        return UserPk;
+    }
 }
