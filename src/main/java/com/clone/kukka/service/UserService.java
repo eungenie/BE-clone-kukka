@@ -50,10 +50,4 @@ public class UserService {
     public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername);
     }
-
-    // Comment
-//    public User findByUserId(String id) {
-//        return userRepository.findByUserId(id).orElseThrow(
-//                () -> new RuntimeException("USER_ID가 존재하지 않습니다."));
-//    }
 }

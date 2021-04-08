@@ -28,6 +28,9 @@ public class Comment extends Timestamped {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "rate", nullable = false)
+    private int rate;
+
     public Comment(CommentRequestDto requestDto, ProductService productService) {
         this.username = requestDto.getUsername();
         this.product = productService.findById(requestDto.getProductId());

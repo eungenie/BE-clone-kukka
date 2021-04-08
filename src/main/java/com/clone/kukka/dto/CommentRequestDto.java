@@ -12,5 +12,6 @@ public class CommentRequestDto {
     private String username;
     private String content;
     private Long productId;
+    private int rate;
 
 }
