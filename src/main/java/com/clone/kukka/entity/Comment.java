@@ -35,5 +35,6 @@ public class Comment extends Timestamped {
         this.username = requestDto.getUsername();
         this.product = productService.findById(requestDto.getProductId());
         this.content = requestDto.getContent();
+        this.rate = requestDto.getRate();
     }
 }
