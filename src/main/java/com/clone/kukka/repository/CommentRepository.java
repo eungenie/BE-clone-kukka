@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     //상품별 댓글 찾아서 불러오기
-    List<Comment> findByProductIdOrderByModifiedAtDesc(Long productId);
+    List<Comment> findByProductIdOrderByCreatedAtDesc(Long productId);
 
     //특정 댓글 삭제
     void deleteById(Long Id);

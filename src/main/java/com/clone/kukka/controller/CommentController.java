@@ -29,7 +29,7 @@ public class CommentController {
     @ResponseBody
     @GetMapping("/api/products/{productId}")
     public List<Comment> readComment(@PathVariable Long productId) {
-        return commentRepository.findByProductIdOrderByModifiedAtDesc(productId);
+        return commentRepository.findByProductIdOrderByCreatedAtDesc(productId);
     }
 
     //댓글 삭제
